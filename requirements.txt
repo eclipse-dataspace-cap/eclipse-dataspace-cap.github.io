@@ -1,0 +1,7 @@
+mkdocs-git-revision-date-localized-plugin==1.2.*
+mkdocs-glightbox==0.4.*
+mkdocs-kroki-plugin==0.9.*
+mkdocs-material==9.5.*
+linkml==1.8.*
+owlready2==0.47
+rdflib==7.0.*

@@ -1,0 +1,71 @@
+site_name: Eclipse Conformity Assessment Policy and Credential Profile
+theme:
+  name: material
+  logo: images/logo-alpha.png
+  favicon: images/logo-alpha.png
+  palette:
+    primary: indigo
+    accent: light blue
+  features:
+    - content.tooltips
+    - content.code.annotate
+    - content.code.copy
+    - navigation.tabs
+    - navigation.sections
+    - navigation.path
+    - navigation.indexes
+  
+nav:
+  - Home: README.md
+
+#extra:
+#  homepage: https://w3id.org/dataspace-cap
+
+plugins:
+  - search
+ - git-revision-date-localized:
+     enable_creation_date: true
+  - glightbox
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - tables
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascript/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.plot.ly/plotly-2.30.0.min.js
