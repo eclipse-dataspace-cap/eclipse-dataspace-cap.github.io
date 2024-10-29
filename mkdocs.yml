@@ -1,11 +1,12 @@
 site_name: Eclipse Conformity Assessment Policy and Credential Profile
+repo_url: https://github.com/eclipse-dataspace-cap/eclipse-dataspace-cap.github.io
 theme:
   name: material
-  logo: images/logo-alpha.png
-  favicon: images/logo-alpha.png
+  logo: figures/Stack-Colour-RGB-logo-alone.png
+  favicon: figures/Stack-Colour-RGB-logo-alone.png
   palette:
-    primary: indigo
-    accent: light blue
+    primary: deep purple
+    accent: blue
   features:
     - content.tooltips
     - content.code.annotate
@@ -16,10 +17,30 @@ theme:
     - navigation.indexes
   
 nav:
-  - Home: README.md
+  - Home:
+    - Overview: README.md
+  - Specifications:
+    - Ontology: ontology.md
 
-#extra:
-#  homepage: https://w3id.org/dataspace-cap
+# nav:
+#  - About:
+#    - Editorial Information: README.md
+#    - Executive Summary: Executive_Summary.md
+#  - Introduction:
+#    - Scope: Introduction_and_scope.md
+#  - Compliance Rules:
+#    - Compliance for Cloud Services: criteria_cloud_services.md
+#    - Compliance for Data Exchange Services: criteria_data_exchange_services.md
+#    - Compliance for Participants: criteria_participant.md
+#  - Gaia-X Trust Anchors:
+#    - Gaia-X Trust Anchors: Gaia-X_Trust_Anchors.md
+#    - Gaia-X Trust Anchors - CAB: Gaia-X_Trust_Anchors_CAB.md
+#  - Annexes:
+#    - Label format: annex_label_format.md
+#    - Power of Attorney: annex_power_of_attorney_format.md
+#    - Process: Process.md
+#    - changelog.md 
+
 
 plugins:
   - search
@@ -65,7 +86,6 @@ markdown_extensions:
       generic: true
 
 extra_javascript:
-  - javascript/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  - https://cdn.plot.ly/plotly-2.30.0.min.js
+  - js/mathjax.js
+  - vendors/tex-mml-chtml.js
+  - vendors/plotly-2.30.0.min.js

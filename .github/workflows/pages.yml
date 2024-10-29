@@ -1,5 +1,6 @@
-#name: Auto-Publish
+name: Build Website
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -11,14 +12,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: '3.13'
+          cache: 'pip' # caching pip dependencies
       - run: pip install --upgrade pip
       - run: pip install -Ur requirements.txt
-      - run: pip list --outdated
-        if: (env.ACT)
+      # - run: pip list --outdated
+      #   if: (env.ACT)
       - run: mkdocs build --site-dir public
+      - run: |
+          ls
+          pwd
+          find .
       - uses: actions/upload-pages-artifact@v3
-        if: (!env.ACT)
+        # if: (!env.ACT)
         with:
           path: public/
   deploy:
