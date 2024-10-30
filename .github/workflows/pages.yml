@@ -19,12 +19,7 @@ jobs:
       # - run: pip list --outdated
       #   if: (env.ACT)
       - run: mkdocs build --site-dir public
-      - run: |
-          ls
-          pwd
-          find .
       - uses: actions/upload-pages-artifact@v3
-        # if: (!env.ACT)
         with:
           path: public/
   deploy:
