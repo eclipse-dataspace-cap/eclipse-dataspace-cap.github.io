@@ -19,6 +19,9 @@ theme:
 nav:
   - Home:
     - Overview: README.md
+    - Digital attestation: digital_attestation.md
+    - Conformity Assessment activities: activities.md
+    - Composition of scheme: composition.md
   - Specifications:
     - Ontology: ontology.md
 
@@ -87,5 +90,5 @@ markdown_extensions:
 
 extra_javascript:
   - js/mathjax.js
-  - vendors/tex-mml-chtml.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - vendors/plotly-2.30.0.min.js

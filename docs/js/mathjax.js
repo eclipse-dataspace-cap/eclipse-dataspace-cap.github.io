@@ -1,5 +1,3 @@
-console.log("mathjax.js start.")
-
 window.MathJax = {
   loader: {load: ['[tex]/centernot']},
   tex: {
@@ -21,5 +19,3 @@ document$.subscribe(() => {
   MathJax.texReset()
   MathJax.typesetPromise()
 })
-
-console.log("mathjax.js end.")
