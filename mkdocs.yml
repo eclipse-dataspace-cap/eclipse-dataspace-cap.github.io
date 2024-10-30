@@ -24,26 +24,8 @@ nav:
     - Composition of scheme: composition.md
   - Specifications:
     - Ontology: ontology.md
-
-# nav:
-#  - About:
-#    - Editorial Information: README.md
-#    - Executive Summary: Executive_Summary.md
-#  - Introduction:
-#    - Scope: Introduction_and_scope.md
-#  - Compliance Rules:
-#    - Compliance for Cloud Services: criteria_cloud_services.md
-#    - Compliance for Data Exchange Services: criteria_data_exchange_services.md
-#    - Compliance for Participants: criteria_participant.md
-#  - Gaia-X Trust Anchors:
-#    - Gaia-X Trust Anchors: Gaia-X_Trust_Anchors.md
-#    - Gaia-X Trust Anchors - CAB: Gaia-X_Trust_Anchors_CAB.md
-#  - Annexes:
-#    - Label format: annex_label_format.md
-#    - Power of Attorney: annex_power_of_attorney_format.md
-#    - Process: Process.md
-#    - changelog.md 
-
+  # - Annexes:
+  #   - changelog.md 
 
 plugins:
   - search
