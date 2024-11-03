@@ -1,0 +1,5 @@
+.envrc
+docs/ontology/*
+.vscode
+.direnv
+public/
