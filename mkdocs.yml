@@ -12,6 +12,7 @@ theme:
     - content.code.annotate
     - content.code.copy
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.path
     - navigation.indexes
@@ -32,6 +33,7 @@ plugins:
   - git-revision-date-localized:
       enable_creation_date: true
   - glightbox
+  - awesome-pages
 
 markdown_extensions:
   - abbr
@@ -73,4 +75,4 @@ markdown_extensions:
 extra_javascript:
   - js/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-  - vendors/plotly-2.30.0.min.js
+

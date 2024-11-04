@@ -1,4 +1,4 @@
-# Introduction
+# Ontology
 
 The ontology can be browsed at <https://eclipse-dataspace-cap.github.io/cap-ontology>
 
