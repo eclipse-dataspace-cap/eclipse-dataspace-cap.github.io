@@ -9,8 +9,7 @@ The full ontology can be downloaded in:
 - [LinkML](https://eclipse-dataspace-cap.github.io/cap-ontology/ontology/ontology.linkml.yml)
 
 ???info "Visualisation"
-
-    A 3rd-party visualisation tool is available [here](https://service.tib.eu/webvowl/).
+    A 3rd-party visualisation tool is available [here](https://service.tib.eu/webvowl/#iri=https://eclipse-dataspace-cap.github.io/cap-ontology/ontology/ontology.owl.ttl).
 
     ![Image webVOWL](figures/webVOWL-sample.png){ width="300" }
 
