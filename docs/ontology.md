@@ -2,14 +2,8 @@
 
 The ontology can be browsed at <https://eclipse-dataspace-cap.github.io/cap-ontology>
 
-The full ontology can be downloaded in:
-
-- [Turtle](https://eclipse-dataspace-cap.github.io/cap-ontology/ontology/ontology.owl.ttl)
-- [RDF/XML](https://eclipse-dataspace-cap.github.io/cap-ontology/ontology/ontology.owl.xml)
-- [LinkML](https://eclipse-dataspace-cap.github.io/cap-ontology/ontology/ontology.linkml.yml)
-
 ???info "Visualisation"
-    A 3rd-party visualisation tool is available [here](https://service.tib.eu/webvowl/#iri=https://eclipse-dataspace-cap.github.io/cap-ontology/ontology/ontology.owl.ttl).
+    A 3rd-party visualisation tool is available [here](https://service.tib.eu/webvowl/#iri=https://github.com/eclipse-dataspace-cap/cap-ontology/releases/download/v2.0.1/cap.owl.ttl).
 
     ![Image webVOWL](figures/webVOWL-sample.png){ width="300" }
 
