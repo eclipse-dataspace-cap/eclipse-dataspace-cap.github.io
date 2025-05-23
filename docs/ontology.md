@@ -26,7 +26,7 @@ from pyshacl import validate
 from rdflib import BNode, Graph, Literal, Namespace, Node
 from rdflib.namespace import FOAF, RDF, SDO, XSD
 
-CAP_VERSION = "v2.2.0"
+CAP_VERSION = "v2.2.1"
 
 CRED = Namespace("https://www.w3.org/ns/credentials/v2/")
 CAP = Namespace(f"https://w3id.org/eclipse-cap/{CAP_VERSION}/#")
@@ -44,6 +44,7 @@ def generate_conformity_assessment() -> tuple[Node, Graph]:
 
     scheme = BNode()
     g.add((certification, CAP.conformity_assessment_scheme, scheme))
+    g.add((scheme, RDF.type, CAP.ConformityAssessmentScheme))
     g.add((scheme, CAP.name, Literal("SecNumCloud")))
     g.add((scheme, CAP.version, Literal("3.2")))
     issuance_date = datetime(year=2023, month=11, day=30)
@@ -63,12 +64,12 @@ def generate_conformity_assessment() -> tuple[Node, Graph]:
 
 
 def generate_evidence(evidence_url: str) -> tuple[Node, Graph]:
-    """function to generate a cred:Evidence (SDK)"""
+    """function to generate a cred:Evidence"""
     g = Graph()
 
     evidence = BNode()
     g.add((vc, CRED.evidence, evidence))
-    g.add((evidence, RDF.type, CRED.evidence))
+    g.add((evidence, RDF.type, CRED.Evidence))
     g.add((evidence, CRED.value, Literal(evidence_url)))
     evidence_sri = compute_sri(evidence_url)
     g.add((evidence, CRED.digest, Literal(f"sha256-{evidence_sri}")))
@@ -84,12 +85,12 @@ def compute_sri(url: str) -> str:
     return sha256_hash.hexdigest()
 
 
-g = Graph() # create an empty graph
+g = Graph()  # create an empty graph
 # declare prefix to increase readability
 g.bind("cred", CRED)
 g.bind("cap", CAP)
 g.bind("gx", GX)
-g.bind("ex", CRED)
+g.bind("ex", EX)
 
 # create an VC ID and declare its properties
 vc = EX.myvc
@@ -149,34 +150,36 @@ print(conforms, results_graph, results_text)
 
 The output of that script using `pyshacl>=0.30.1`, `python-dateutil>=2.9.0.post0`, `rdflib>=7.1.4`, `requests>=2.32.3`
 
-```text
-@prefix cap: <https://w3id.org/eclipse-cap/v2.2.0/#> .
-@prefix ex: <https://www.w3.org/ns/credentials/v2/> .
+```text linenums="1"
+@prefix cap: <https://w3id.org/eclipse-cap/v2.2.1/#> .
+@prefix cred: <https://www.w3.org/ns/credentials/v2/> .
+@prefix ex: <http://example.com/#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix gx: <https://w3id.org/gaia-x/development#> .
 @prefix schema: <https://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://example.com/#myvc> a ex:VerifiableCredential ;
-    ex:credentialSubject <http://example.com/#TrustedNotary_certification01> ;
-    ex:evidence [ a ex:evidence ;
-            ex:digest "sha256-9b860c2fe0bc4200cf2b94369c82f3806f6db093bd92c3f341fee5e676ff1a60" ;
-            ex:value "https://cyber.gouv.fr/sites/default/files/decisions-qualifications/2023_2118_np.pdf" ] ;
-    ex:issuer "did:web:trusted-notary.eu" ;
-    ex:validFrom "2025-05-22T21:36:00.836750"^^xsd:dateTime ;
-    ex:validUntil "2025-08-20T21:36:00.836750"^^xsd:dateTime .
+ex:myvc a cred:VerifiableCredential ;
+    cred:credentialSubject ex:TrustedNotary_certification01 ;
+    cred:evidence [ a cred:Evidence ;
+            cred:digest "sha256-9b860c2fe0bc4200cf2b94369c82f3806f6db093bd92c3f341fee5e676ff1a60" ;
+            cred:value "https://cyber.gouv.fr/sites/default/files/decisions-qualifications/2023_2118_np.pdf" ] ;
+    cred:issuer "did:web:trusted-notary.eu" ;
+    cred:validFrom "2025-05-23T09:35:33.251157"^^xsd:dateTime ;
+    cred:validUntil "2025-08-21T09:35:33.251157"^^xsd:dateTime .
 
-<http://example.com/#LNE> a cap:ConformityAssessmentBody,
+ex:LNE a cap:ConformityAssessmentBody,
         gx:LegalPerson ;
     foaf:name "LABORATOIRE NATIONAL DE METROLOGIE ET D'ESSAIS"@fr ;
     schema:vatID "FR313320244" .
 
-<http://example.com/#TrustedNotary_certification01> a cap:Certification ;
-    cap:conformity_assessment_scheme [ cap:name "SecNumCloud" ;
+ex:TrustedNotary_certification01 a cap:Certification ;
+    cap:conformity_assessment_scheme [ a cap:ConformityAssessmentScheme ;
+            cap:name "SecNumCloud" ;
             cap:version "3.2" ] ;
     cap:issuance_datetime "2023-11-30T00:00:00"^^xsd:dateTime ;
-    cap:issuer <http://example.com/#LNE> ;
-    cap:object <http://example.com/#OutScaleSAS_IaaS> ;
+    cap:issuer ex:LNE ;
+    cap:object ex:OutScaleSAS_IaaS ;
     cap:valid_from_datetime "2023-11-30T00:00:00"^^xsd:dateTime ;
     cap:valid_until_datetime "2026-11-30T00:00:00"^^xsd:dateTime .
 
