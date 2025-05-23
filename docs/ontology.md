@@ -14,7 +14,7 @@ Example of `cap:Certification` inside a W3C Verifiable Credential v2.0
 The code is primarily using [rdflib](https://rdflib.readthedocs.io/)
 
 
-```python
+```python linenums="1"
 #!/usr/bin/env python3
 
 import hashlib
