@@ -1,0 +1,5 @@
+line-length = 120
+
+[lint]
+select = ["I001"]  # Enable common rules, including formatting
+ignore = []  # Ignore line length warnings if needed

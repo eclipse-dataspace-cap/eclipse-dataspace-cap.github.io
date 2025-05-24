@@ -1,0 +1,7 @@
+cryptography==45.0.*
+jwcrypto==1.5.*
+marimo==0.13.*
+pyshacl==0.30.*
+python-dateutil==2.9.*
+rdflib==7.1.*
+requests==2.32.*
