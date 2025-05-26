@@ -9,13 +9,13 @@ The ontology can be browsed at <https://eclipse-dataspace-cap.github.io/cap-onto
 
 ## For Developer
 
-An example of `cap:Certification` inside a W3C Verifiable Credential v2.0 is available in the file `certification_vc.py` in the [notebooks](../notebooks/) folder.
+An example of `cap:Certification` inside a W3C Verifiable Credential v2.0 is available in the file `certification_vc.py` in the [notebooks](https://github.com/eclipse-dataspace-cap/eclipse-dataspace-cap.github.io/tree/main/docs/notebooks) folder.
 
 The code sample include a TCK validation using Eclipse CAP SHACL file.
 
 ### Turtle output example
 
-```text
+```text linenums="1"
 @prefix cap: <https://w3id.org/eclipse-cap/v2.2.1/#> .
 @prefix cred: <https://www.w3.org/ns/credentials/v2/> .
 @prefix ex: <http://example.com/#> .
@@ -57,5 +57,10 @@ eyJhbGciOiJFZERTQSIsImN0eSI6InZjIiwidHlwIjoidmMrand0In0.eyJAY29udGV4dCI6eyJjYXAi
 with the public key in JWK format
 
 ```json
-{"crv":"Ed25519","kid":"zD6Ku27DiffK3Eo53dEThwg7azhZfXYV0x8egjO42jA","kty":"OKP","x":"7p4c1IU6aA65FWn6YZ-Bya5dRbfd4P6d4a6H0u9-gCg"}
+{
+  "crv": "Ed25519",
+  "kid": "zD6Ku27DiffK3Eo53dEThwg7azhZfXYV0x8egjO42jA",
+  "kty": "OKP",
+  "x": "7p4c1IU6aA65FWn6YZ-Bya5dRbfd4P6d4a6H0u9-gCg"
+}
 ```
