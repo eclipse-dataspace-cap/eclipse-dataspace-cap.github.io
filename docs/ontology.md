@@ -9,18 +9,9 @@ The ontology can be browsed at <https://eclipse-dataspace-cap.github.io/cap-onto
 
 ## For Developer
 
-Example of `cap:Certification` inside a W3C Verifiable Credential v2.0 in the file [`certification_vc.py`](../notebooks/certification_vc.py).
+An example of `cap:Certification` inside a W3C Verifiable Credential v2.0 is available in the file `certification_vc.py` in the [notebooks](../notebooks/) folder.
 
 The code sample include a TCK validation using Eclipse CAP SHACL file.
-
-You can replicate the outputs with the commands:
-
-```shell
-cd docs/notebooks/
-uv venv
-uv pip install -Ur requirements.txt
-uv run ./certification_vc.py
-```
 
 ### Turtle output example
 
