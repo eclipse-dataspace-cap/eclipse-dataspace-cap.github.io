@@ -3,7 +3,7 @@
 The ontology can be browsed at <https://eclipse-dataspace-cap.github.io/cap-ontology>
 
 ???info "Visualisation"
-    A 3rd-party visualisation tool is available [here](https://service.tib.eu/webvowl/#iri=https://github.com/eclipse-dataspace-cap/cap-ontology/releases/download/v2.0.1/cap.owl.ttl).
+    A 3rd-party visualisation tool is available [here](https://webvowl.lab.gronlier.fr/#iri=https://github.com/eclipse-dataspace-cap/cap-ontology/releases/download/v2.2.1/cap.owl.ttl).
 
     ![Image webVOWL](figures/webVOWL-sample.png){ width="300" }
 
