@@ -52,7 +52,7 @@ def generate_cap_scheme(g: Graph) -> Node:
     return scheme
 
 
-def generate_cap_declaration(g: Graph) -> tuple[Node, Node]:
+def generate_cap_declaration(g: Graph) -> Node:
     declaration = EX.my_declaration
     g.add((declaration, RDF.type, CAP.Declaration))
     g.add((declaration, CAP.conformity_assessment_scheme, generate_cap_scheme(g)))
@@ -87,3 +87,55 @@ g.add((vc, CRED.credentialSubject, generate_cap_declaration(g)))
 
 ## Display RDF data in Turtle format
 print(g.serialize(format="ttl"))
+
+
+## Issue signed Verifiable Credential
+# Recursively resolve ids
+def nest_inside(obj, object_ids: dict):
+    if isinstance(obj, dict):
+        if "@id" in obj and len(obj) == 1:  # it's a object with only on @id field
+            if obj["@id"] in object_ids:  # it has not yet been visited
+                obj.update(object_ids[obj["@id"]])  # update the reference only object with the real object
+                del object_ids[obj["@id"]]  # delete it from the list of available objects to prevent looping
+                if obj["@id"].startswith("_:"):  # if it's a blank node
+                    del obj["@id"]  # remove the blank node id
+        for key in obj.keys():  # go through all object's property
+            obj[key] = nest_inside(obj[key], object_ids)  # nest the object
+        return obj  # return the updated object
+    elif isinstance(obj, list):
+        return [nest_inside(item, object_ids) for item in obj]  # go through the list and nest the object
+    return obj  # nothing to do, it's a literal (int, str, etc.)
+
+
+def get_vcs(g: Graph):
+    flat_json_doc = json.loads(g.serialize(format="json-ld", auto_compact=True))
+    # Build an index of objects of the @graph by "@id"
+    object_ids = {item["@id"]: item for item in flat_json_doc["@graph"]}
+    vc_ids = g.subjects(predicate=RDF.type, object=CRED.VerifiableCredential)
+    for vc_id in vc_ids:
+        compact_vc_id = vc_id.n3(namespace_manager=g.namespace_manager)
+        assert compact_vc_id in object_ids, object_ids.keys()
+        vc_obj = object_ids[compact_vc_id]
+        del object_ids[compact_vc_id]
+        vc_obj = nest_inside(vc_obj, object_ids)
+        vc_obj["@context"] = flat_json_doc["@context"]
+        yield vc_obj
+
+    return (get_vcs,)
+
+
+private_key = """-----BEGIN PRIVATE KEY-----
+MC4CAQAwBQYDK2VwBCIEIPtUxyxlhjOWetjIYmc98dmB2GxpeaMPP64qBhZmG13r
+-----END PRIVATE KEY-----"""
+
+headers = {"cty": "vc", "typ": "vc+jwt", "alg": "EdDSA"}
+
+key = jwk.JWK()
+key.import_from_pem(private_key.encode())
+print("Public Key in JWK format:", key.export(private_key=False))
+
+for vc_obj in get_vcs(g):
+    # print(json.dumps(vc_obj, indent=2))
+    token = jwt.JWT(header=headers, claims=vc_obj)
+    token.make_signed_token(key)
+    print(token.serialize())
