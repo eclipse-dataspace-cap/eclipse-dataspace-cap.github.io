@@ -1,3 +1,7 @@
+# MIGRATED TO https://gitlab.eclipse.org/eclipse/dataspace-cap/website
+
+---
+
 # Website of the Eclipse Conformity Assessment Policy and Credential Profile (Eclipse CAP)
 
 The website is published at <https://eclipse-dataspace-cap.github.io/> 
