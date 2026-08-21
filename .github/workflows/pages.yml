@@ -10,18 +10,20 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-          cache: 'pip' # caching pip dependencies
-      - run: pip install --upgrade pip
-      - run: pip install -Ur requirements.txt
+      # Site moved to https://eclipse.dev/dataspace-cap — mkdocs build disabled, publishing a static redirect instead.
+      # - uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.13'
+      #     cache: 'pip' # caching pip dependencies
+      # - run: pip install --upgrade pip
+      # - run: pip install -Ur requirements.txt
       # - run: pip list --outdated
       #   if: (env.ACT)
-      - run: mkdocs build --site-dir public
+      # - run: mkdocs build --site-dir public
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: public/
+          path: redirect/
+          # path: public/
   deploy:
     environment:
       name: github-pages
